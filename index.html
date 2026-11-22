@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <main class="app">
+      <!-- START SCREEN -->
+      <section id="start-screen" class="screen">
+        <h1>Quiz App</h1>
+        <p>Test your knowledge and see how much you know!</p>
+
+        <p id="best-score">Best Score: 0/10</p>
+
+        <label for="category">Select Category:</label>
+        <select id="category">
+          <option value="9">General Knowledge</option>
+          <option value="17">Science & Nature</option>
+          <option value="18">Computers</option>
+          <option value="21">Sports</option>
+          <option value="23">History</option>
+        </select>
+
+        <label for="difficulty">Select Difficulty:</label>
+        <select id="difficulty">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+
+        <button id="start-btn">Start Quiz</button>
+
+        <!-- LOADING MESSAGE -->
+        <p id="loading-message" class="hidden">Loading questions...</p>
+
+        <!-- ERROR MESSAGE -->
+        <div id="error-message" class="hidden">
+          <p id="error-text"></p>
+          <button id="try-again-btn">Try Again</button>
+        </div>
+      </section>
+
+      <!-- QUIZ SCREEN -->
+      <section id="quiz-screen" class="screen hidden">
+        <div class="quiz-info">
+          <p id="progress">Question 1 of 10</p>
+          <p id="score">Score: 0</p>
+        </div>
+
+        <p id="timer">Time left: 15s</p>
+        <h2 id="question-text">Question will appear here</h2>
+
+        <div id="answer-container">
+          <!-- Answer buttons are created by JavaScript -->
+        </div>
+
+        <button id="next-btn" class="hidden">Next Question</button>
+      </section>
+
+      <!-- RESULTS SCREEN -->
+      <section id="results-screen" class="screen hidden">
+        <h2>Quiz Completed!</h2>
+
+        <p>Your Final Score:</p>
+        <h3 id="final-score">0/10</h3>
+        <p id="percentage">0%</p>
+        <p id="performance-message">Keep practising!</p>
+
+        <button id="play-again-btn">Play Again</button>
+      </section>
+    </main>
+  </body>
+</html>
