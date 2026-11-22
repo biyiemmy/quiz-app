@@ -1,0 +1,385 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #eff6ff, #e0e7ff);
+    color: #1e293b;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+.app {
+    background: #ffffff;
+    width: 100%;
+    max-width: 600px;
+
+    padding: 35px;
+    border-radius: 18px;
+
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.screen {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =====================================
+   4. HEADINGS AND TEXT
+===================================== */
+
+h1 {
+    font-size: 32px;
+    text-align: center;
+    color: #1d4ed8;
+}
+
+h2 {
+    font-size: 26px;
+    text-align: center;
+    color: #1e293b;
+}
+
+h3 {
+    font-size: 20px;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+p {
+    line-height: 1.5;
+}
+
+
+/* =====================================
+   5. FORM ELEMENTS
+===================================== */
+
+label {
+    font-weight: bold;
+    margin-bottom: -10px;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+
+    font-size: 15px;
+    background: #ffffff;
+    color: #1e293b;
+}
+
+
+/* =====================================
+   6. BUTTONS
+===================================== */
+
+button {
+    width: 100%;
+    padding: 13px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #2563eb;
+    color: #ffffff;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease,
+        transform 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+    background: #1d4ed8;
+}
+
+button:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+
+/* =====================================
+   7. BEST SCORE
+===================================== */
+
+#best-score {
+    background: #eff6ff;
+    color: #1d4ed8;
+
+    padding: 12px;
+    border-radius: 8px;
+
+    text-align: center;
+    font-weight: bold;
+}
+
+
+/* =====================================
+   8. QUIZ INFORMATION
+===================================== */
+
+.quiz-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    flex-wrap: wrap;
+    gap: 10px;
+
+    background: #eff6ff;
+    padding: 15px;
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#progress {
+    color: #334155;
+}
+
+#score {
+    color: #16a34a;
+}
+
+#timer {
+    color: #2563eb;
+    font-weight: bold;
+}
+
+#timer.warning {
+    color: #dc2626;
+}
+
+
+/* =====================================
+   9. QUESTION TEXT
+===================================== */
+
+#question-text {
+    font-size: 20px;
+    line-height: 1.6;
+    color: #1e293b;
+}
+
+
+/* =====================================
+   10. ANSWER BUTTONS
+===================================== */
+
+#answer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.answer-btn {
+    background: #e2e8f0;
+    color: #1e293b;
+
+    text-align: left;
+    padding: 15px;
+
+    border: 2px solid transparent;
+    border-radius: 9px;
+
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.answer-btn:hover:not(:disabled) {
+    background: #cbd5e1;
+}
+
+
+/* Correct answer */
+
+.answer-btn.correct {
+    background: #16a34a;
+    color: #ffffff;
+    border-color: #15803d;
+}
+
+
+/* Wrong answer */
+
+.answer-btn.wrong {
+    background: #dc2626;
+    color: #ffffff;
+    border-color: #b91c1c;
+}
+
+
+/* Keep answer colours after disabling */
+
+.answer-btn:disabled {
+    opacity: 1;
+    cursor: not-allowed;
+}
+
+
+/* =====================================
+   11. NEXT BUTTON
+===================================== */
+
+#next-btn {
+    background: #2563eb;
+}
+
+#next-btn:hover:not(:disabled) {
+    background: #1d4ed8;
+}
+
+
+/* =====================================
+   12. LOADING MESSAGE
+===================================== */
+
+#loading-message {
+    text-align: center;
+    color: #2563eb;
+    font-weight: bold;
+    padding: 10px;
+}
+
+
+/* =====================================
+   13. ERROR MESSAGE
+===================================== */
+
+#error-message {
+    text-align: center;
+    color: #dc2626;
+
+    background: #fef2f2;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+#error-message button {
+    margin-top: 12px;
+    background: #dc2626;
+}
+
+#error-message button:hover {
+    background: #b91c1c;
+}
+
+
+/* =====================================
+   14. RESULTS SCREEN
+===================================== */
+
+#final-score {
+    font-size: 26px;
+    font-weight: bold;
+
+    color: #2563eb;
+    text-align: center;
+}
+
+#percentage {
+    font-size: 22px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#performance-message {
+    text-align: center;
+    font-weight: bold;
+    font-size: 17px;
+
+    margin: 10px 0;
+}
+
+#play-again-btn {
+    background: #16a34a;
+}
+
+#play-again-btn:hover {
+    background: #15803d;
+}
+
+
+/* =====================================
+   15. ACCESSIBILITY
+===================================== */
+
+button:focus-visible,
+select:focus-visible {
+    outline: 3px solid #93c5fd;
+    outline-offset: 3px;
+}
+
+
+/* =====================================
+   16. RESPONSIVE DESIGN
+===================================== */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 12px;
+        align-items: flex-start;
+    }
+
+    .app {
+        padding: 22px;
+        margin-top: 20px;
+        border-radius: 14px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+
+    h2 {
+        font-size: 23px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    #question-text {
+        font-size: 18px;
+    }
+
+    .quiz-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .answer-btn {
+        font-size: 14px;
+        padding: 13px;
+    }
+
+}
