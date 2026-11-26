@@ -38,11 +38,6 @@ body {
     display: none !important;
 }
 
-
-/* =====================================
-   4. HEADINGS AND TEXT
-===================================== */
-
 h1 {
     font-size: 32px;
     text-align: center;
@@ -65,11 +60,6 @@ p {
     line-height: 1.5;
 }
 
-
-/* =====================================
-   5. FORM ELEMENTS
-===================================== */
-
 label {
     font-weight: bold;
     margin-bottom: -10px;
@@ -86,11 +76,6 @@ select {
     background: #ffffff;
     color: #1e293b;
 }
-
-
-/* =====================================
-   6. BUTTONS
-===================================== */
 
 button {
     width: 100%;
@@ -124,11 +109,6 @@ button:disabled {
     opacity: 0.65;
 }
 
-
-/* =====================================
-   7. BEST SCORE
-===================================== */
-
 #best-score {
     background: #eff6ff;
     color: #1d4ed8;
@@ -139,11 +119,6 @@ button:disabled {
     text-align: center;
     font-weight: bold;
 }
-
-
-/* =====================================
-   8. QUIZ INFORMATION
-===================================== */
 
 .quiz-info {
     display: flex;
@@ -178,21 +153,12 @@ button:disabled {
     color: #dc2626;
 }
 
-
-/* =====================================
-   9. QUESTION TEXT
-===================================== */
-
 #question-text {
     font-size: 20px;
     line-height: 1.6;
     color: #1e293b;
 }
 
-
-/* =====================================
-   10. ANSWER BUTTONS
-===================================== */
 
 #answer-container {
     display: flex;
@@ -245,10 +211,6 @@ button:disabled {
 }
 
 
-/* =====================================
-   11. NEXT BUTTON
-===================================== */
-
 #next-btn {
     background: #2563eb;
 }
@@ -258,21 +220,12 @@ button:disabled {
 }
 
 
-/* =====================================
-   12. LOADING MESSAGE
-===================================== */
-
 #loading-message {
     text-align: center;
     color: #2563eb;
     font-weight: bold;
     padding: 10px;
 }
-
-
-/* =====================================
-   13. ERROR MESSAGE
-===================================== */
 
 #error-message {
     text-align: center;
@@ -291,11 +244,6 @@ button:disabled {
 #error-message button:hover {
     background: #b91c1c;
 }
-
-
-/* =====================================
-   14. RESULTS SCREEN
-===================================== */
 
 #final-score {
     font-size: 26px;
@@ -328,20 +276,12 @@ button:disabled {
 }
 
 
-/* =====================================
-   15. ACCESSIBILITY
-===================================== */
-
 button:focus-visible,
 select:focus-visible {
     outline: 3px solid #93c5fd;
     outline-offset: 3px;
 }
 
-
-/* =====================================
-   16. RESPONSIVE DESIGN
-===================================== */
 
 @media (max-width: 600px) {
 
