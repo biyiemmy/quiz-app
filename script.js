@@ -47,7 +47,6 @@ class Question {
             correctAnswer,
             ...incorrectAnswers
         ]);
-
     }
 
 
@@ -59,7 +58,6 @@ class Question {
         }
         return answers;
     }
-
 }
 
 class Quiz {
@@ -124,9 +122,7 @@ function decodeText(text) {
 
     textarea.innerHTML = decoded;
     return textarea.value;
-
 }
-
 
 async function fetchQuestions() {
     const category = categorySelect.value;
@@ -172,9 +168,7 @@ async function fetchQuestions() {
 
     } catch (error) {
         throw error;
-
     }
-
 }
 
 
@@ -243,9 +237,7 @@ async function startQuiz() {
             startButton.disabled = false
             startButton.textContent = "Start Quiz";
         }
-
     }
-
 }
 
 function displayQuestion() {
@@ -257,238 +249,158 @@ function displayQuestion() {
     questionText.textContent = currentQuestion.question;
 
     // Display progress
-    progressText.textContent =
-        `Question ${quiz.currentQuestionIndex + 1} of ${quiz.questions.length}`;
+    progressText.textContent = `Question ${quiz.currentQuestionIndex + 1} of ${quiz.questions.length}`;
 
     // Display running score
-
     scoreText.textContent = `Score: ${quiz.score}`;
 
     // Clear previous answer buttons
-
     answerContainer.innerHTML = "";
 
     // Hide Next button
-
     nextButton.classList.add("hidden");
 
     // Create answer buttons dynamically
-
     currentQuestion.options.forEach(answer => {
-
         const button = document.createElement("button");
 
         button.textContent = answer;
-
         button.type = "button";
 
         button.classList.add("answer-btn");
 
         // Handle answer selection
-
         button.addEventListener("click", () => {
-
             selectAnswer(answer, button);
-
         });
 
         // Add button to answer container
-
         answerContainer.appendChild(button);
-
     });
 
     // Start a fresh timer
-
     startTimer();
-
 }
 
-
-/* =====================================
-   10. HANDLE ANSWER SELECTION
-===================================== */
-
+//    HANDLE ANSWER SELECTION
 function selectAnswer(selectedAnswer, selectedButton) {
 
     // Prevent repeated selection
-
     if (quiz.answered || selectedButton.disabled) {
         return;
     }
 
     // Stop timer immediately
-
     stopTimer();
-
     const currentQuestion = quiz.getCurrentQuestion();
 
     // Check answer
-
     const isCorrect = quiz.checkAnswer(selectedAnswer);
 
     // Get all answer buttons
-
     const answerButtons = answerContainer.querySelectorAll("button");
 
     // Disable every answer button
-
     answerButtons.forEach(button => {
-
         button.disabled = true;
-
     });
 
     // Correct answer
-
     if (isCorrect) {
-
         selectedButton.classList.add("correct");
 
     } else {
-
         // Wrong answer
-
         selectedButton.classList.add("wrong");
 
         // Reveal correct answer
-
         answerButtons.forEach(button => {
-
             if (button.textContent === currentQuestion.correctAnswer) {
-
                 button.classList.add("correct");
-
             }
 
         });
-
     }
 
     // Update running score
     scoreText.textContent = `Score: ${quiz.score}`;
 
     // Show Next button
-
     nextButton.classList.remove("hidden");
-
 }
 
-
-/* =====================================
-   11. TIMER FUNCTIONS
-===================================== */
-
+// TIMER FUNCTIONS
 // Stop timer
-
 function stopTimer() {
-
     if (timerInterval !== null) {
-
         clearInterval(timerInterval);
-
         timerInterval = null;
-
     }
-
 }
 
 
 // Start timer
-
 function startTimer() {
-
     // Prevent multiple intervals
 
     stopTimer();
-
     timeLeft = 15;
 
     // Reset warning colour
-
     timerText.classList.remove("warning");
 
     // Display initial time
-
     timerText.textContent = `Time: ${timeLeft}s`;
 
     timerInterval = setInterval(() => {
-
         timeLeft--;
-
         timerText.textContent = `Time: ${timeLeft}s`;
 
         // Warning when 5 seconds or less remain
-
         if (timeLeft <= 5) {
-
             timerText.classList.add("warning");
-
         }
 
         // Time has expired
-
         if (timeLeft <= 0) {
-
             stopTimer();
-
             handleTimeUp();
-
         }
 
     }, 1000);
 
 }
 
-
-/* =====================================
-   12. HANDLE TIME UP
-===================================== */
-
+//  HANDLE TIME UP
 function handleTimeUp() {
-
     // Prevent timeout from running after an answer
-
     if (quiz.answered) {
         return;
     }
 
     // Mark question as unanswered
-
     quiz.markTimedOut();
 
     const currentQuestion = quiz.getCurrentQuestion();
 
     // Get all answer buttons
-
     const answerButtons = answerContainer.querySelectorAll("button");
 
     // Disable all buttons
-
     answerButtons.forEach(button => {
-
         button.disabled = true;
 
         // Reveal correct answer
-
         if (button.textContent === currentQuestion.correctAnswer) {
-
             button.classList.add("correct");
-
         }
-
     });
 
     // Show Next button
-
     nextButton.classList.remove("hidden");
-
 }
 
-
-/* =====================================
-   13. NEXT QUESTION
-===================================== */
+// NEXT QUESTION
 
 function handleNextQuestion() {
 
@@ -499,47 +411,30 @@ function handleNextQuestion() {
     }
 
     // Clear timer
-
     stopTimer();
 
     // Move to next question
-
     quiz.nextQuestion();
 
     // Check if quiz is finished
-
     if (quiz.isFinished()) {
-
         showResults();
-
-    } else {
-
-        displayQuestion();
-
     }
-
+    else {
+        displayQuestion();
+    }
 }
 
-
-/* =====================================
-   14. DISPLAY BEST SCORE
-===================================== */
-
+// DISPLAY BEST SCORE
 function displayBestScore() {
-
     const bestScore = Number(
         localStorage.getItem("bestScore")
     ) || 0;
 
     bestScoreText.textContent = `Best Score: ${bestScore}/10`;
-
 }
 
-
-/* =====================================
-   15. SAVE BEST SCORE
-===================================== */
-
+//    15. SAVE BEST SCORE
 function saveBestScore(score) {
 
     const currentBestScore = Number(
@@ -547,181 +442,115 @@ function saveBestScore(score) {
     ) || 0;
 
     // Save only if the new score is higher
-
     if (score > currentBestScore) {
-
         localStorage.setItem("bestScore", score);
-
     }
 
     // Update displayed best score
-
     displayBestScore();
-
 }
 
-
-/* =====================================
-   16. RESULTS SCREEN
-===================================== */
-
+//    RESULTS SCREEN
 function showResults() {
-
     // Stop any running timer
-
     stopTimer();
 
     // Get final score
-
     const finalScore = quiz.score;
 
     // Calculate percentage
-
     const percentage = Math.round(
         (finalScore / quiz.questions.length) * 100
     );
 
     // Display final score
-
-    finalScoreText.textContent =
-        `Your Score: ${finalScore}/${quiz.questions.length}`;
+    finalScoreText.textContent = `Your Score: ${finalScore}/${quiz.questions.length}`;
 
     // Display percentage
-
-    percentageText.textContent =
-        `Percentage: ${percentage}%`;
+    percentageText.textContent = `Percentage: ${percentage}%`;
 
     // Performance messages
-
     if (percentage >= 80) {
-
-        performanceMessage.textContent =
-            "Great job! Excellent performance!";
-
-    } else if (percentage >= 60) {
-
-        performanceMessage.textContent =
-            "Good effort! Keep improving!";
-
-    } else if (percentage >= 40) {
-
-        performanceMessage.textContent =
-            "Not bad! You can do better!";
-
-    } else {
-
-        performanceMessage.textContent =
-            "Keep practising. You'll improve!";
-
+        performanceMessage.textContent = "Great job! Excellent performance!";
+    }
+    else if (percentage >= 60) {
+        performanceMessage.textContent = "Good effort! Keep improving!";
+    }
+    else if (percentage >= 40) {
+        performanceMessage.textContent = "Not bad! You can do better!";
+    }
+    else {
+        performanceMessage.textContent = "Keep practising. You'll improve!";
     }
 
     // Save best score
-
     saveBestScore(finalScore);
 
     // Show results screen
-
     showScreen(resultsScreen);
-
 }
 
-
-/* =====================================
-   17. PLAY AGAIN
-===================================== */
-
+//   PLAY AGAIN
 function playAgain() {
-
     // Stop any running timer
-
     stopTimer();
 
     // Reset quiz data
-
     quiz = null;
-
     fetchedQuestions = [];
-
     questionsLoaded = false;
-
     isLoading = false;
 
     // Reset timer
-
     timeLeft = 15;
 
     timerText.textContent = "Time: 15s";
-
     timerText.classList.remove("warning");
 
     // Clear previous question and answers
-
     questionText.textContent = "";
-
     answerContainer.innerHTML = "";
 
     // Reset score and progress
-
     scoreText.textContent = "Score: 0";
-
     progressText.textContent = "Question 1 of 10";
 
     // Hide Next button
-
     nextButton.classList.add("hidden");
 
     // Restore Start button
-
     startButton.disabled = false;
-
     startButton.textContent = "Start Quiz";
 
     // Hide loading and error messages
-
     loadingMessage.classList.add("hidden");
 
     errorMessage.classList.add("hidden");
 
     // Update best score
-
     displayBestScore();
 
     // Return to Start screen
-
     showScreen(startScreen);
 
 }
 
 
-/* =====================================
-   18. EVENT LISTENERS
-===================================== */
-
 // Start Quiz
-
 startButton.addEventListener("click", startQuiz);
 
 // Try Again
-
 tryAgainButton.addEventListener("click", startQuiz);
 
 // Next Question
-
 nextButton.addEventListener("click", handleNextQuestion);
 
 // Play Again
-
 playAgainButton.addEventListener("click", playAgain);
 
 
-/* =====================================
-   19. INITIALIZE APPLICATION
-===================================== */
-
 // Display saved best score
-
 displayBestScore();
 
 // Show Start screen
-
 showScreen(startScreen);
